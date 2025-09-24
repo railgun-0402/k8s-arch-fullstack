@@ -1,0 +1,19 @@
+# ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: echo-ing
+  namespace: app
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sm-api.local
+      http:
+        paths:
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: echo-svc
+                port:
+                  number: 80

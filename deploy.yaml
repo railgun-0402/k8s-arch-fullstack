@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo
+  namespace: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: echo }
+  template:
+    metadata:
+      labels: { app: echo }
+    spec:
+      containers:
+        - name: echo
+          image: ealen/echo-server:latest # 受けたHTTPをそのまま返すサンプル
+          ports:
+            - containerPort: 80

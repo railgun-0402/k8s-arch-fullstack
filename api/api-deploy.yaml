@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: internal-api
+  namespace: app
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: internal-api }
+  template:
+    metadata:
+      labels: { app: internal-api }
+    spec:
+      containers:
+        - name: api
+          image: ealen/echo-server:latest
+          ports:
+            - containerPort: 80

@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+  app:
+    image: alpine:3.20
+    # ファイルに一定の文字列を記載するだけ
+    command: >
+      sh -c 'mkdir -p /logs &&
+        while :; do
+          echo "$(date -Iseconds) level=info msg=\"hello from app\" user_id=$$RANDOM";
+          sleep 1;
+        done >> /logs/app.log'
+    volumes:
+      - logs:/logs
+
+  fluent-bit:
+    image: cr.fluentbit.io/fluent/fluent-bit:4.0.10
+    volumes:
+      - logs:/logs:ro
+      - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+    depends_on:
+      - app
+
+volumes:
+  logs:

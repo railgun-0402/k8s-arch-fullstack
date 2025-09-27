@@ -13,7 +13,7 @@ services:
       - logs:/logs
 
   fluent-bit:
-    image: cr.fluentbit.io/fluent/fluent-bit:2.2
+    image: cr.fluentbit.io/fluent/fluent-bit:4.0.10
     volumes:
       - logs:/logs:ro
       - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro

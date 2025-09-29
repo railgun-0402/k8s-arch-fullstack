@@ -14,11 +14,17 @@ services:
 
   fluent-bit:
     image: cr.fluentbit.io/fluent/fluent-bit:4.0.10
+    environment:
+      AWS_REGION: ap-northeast-1
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
     volumes:
       - logs:/logs:ro
       - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+      - fb-buf:/buffers
     depends_on:
       - app
 
 volumes:
   logs:
+  fb-buf:

@@ -8,7 +8,6 @@ terraform {
 }
 
 provider "aws" {
-  // リージョンは 東京 リージョンを指定
   region                   = "ap-northeast-1"
   profile                  = "dev"
   // 作成するリソースの共通タグを指定

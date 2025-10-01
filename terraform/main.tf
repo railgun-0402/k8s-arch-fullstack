@@ -1,10 +1,10 @@
 # S3バケットの作成
 resource "aws_s3_bucket" "sample_bucket" {
-  bucket = "my-unique-bucket-name-20250626"
+  bucket = "sample-bucket-su-2026-10-02"
   force_destroy = true # バケットが空でなくても削除できる
 
   tags = {
-    Name = "sample-bucket"
+    Name = "sample-bucket-su-2026-10-02"
   }
 }
 

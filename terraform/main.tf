@@ -1,3 +1,10 @@
+# 使用する変数を宣言
+# var.xxx で variableで定義した変数を使用できます。
+variable "project" {
+  description = "プロジェクト名"
+  type        = string
+}
+
 # S3バケットの作成
 resource "aws_s3_bucket" "sample_bucket" {
   bucket = "sample-bucket-su-2026-10-02"

@@ -63,23 +63,23 @@ resource "aws_cognito_user_pool_client" "this" {
     refresh_token = "days"
   }
 
-  generate_secret                      = false
+  generate_secret                      = false # Reactなのでfalse
   allowed_oauth_flows_user_pool_client = false # Googleとかサードパーティ認証するならtrueらしい
 
   # 明示的に許可する認証フロー
   # Reactのaws-amplify/authライブラリで使うログイン機能に紐付け
   explicit_auth_flows = [
     "ALLOW_USER_SRP_AUTH",      # パスワードログイン
-    "ALLOW_REFRESH_TOKEN_AUTH", # トークン更新
-    "ALLOW_CUSTOM_AUTH",        # カスタム認証（MFAやステップ認証などで使う）
-    "ALLOW_USER_PASSWORD_AUTH"  # username + password の認証（SRP以外で使うとき）
+    "ALLOW_REFRESH_TOKEN_AUTH", # リフレッシュでのトークン更新
+    "ALLOW_CUSTOM_AUTH",        # カスタム認証（MFAやステップ認証など）
+    "ALLOW_USER_PASSWORD_AUTH"  # username + password 認証
   ]
 
   # ログインに使うIDプロバイダー指定
   supported_identity_providers = ["COGNITO"]
 
-  # 存在しないユーザーへのログイン試行時のレスポンスを統一
-  # セキュリティ対策として、存在するかどうかを外部から判別されないようにする
+  # 存在しないユーザーに対し同じエラーメッセージを送る
+  # ユーザー名の総当たり対策
   prevent_user_existence_errors = "ENABLED"
 }
 

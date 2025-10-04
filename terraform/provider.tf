@@ -8,13 +8,13 @@ terraform {
 }
 
 provider "aws" {
-  region                   = "ap-northeast-1"
-  profile                  = "dev"
+  region  = "ap-northeast-1"
+  profile = "dev"
   // 作成するリソースの共通タグを指定
   default_tags {
     tags = {
-      Project     = "taskfolio"
-      Environment = "local"
+      Project     = var.project
+      Environment = var.environment
       ManagedBy   = "terraform"
     }
   }

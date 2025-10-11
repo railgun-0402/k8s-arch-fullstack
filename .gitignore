@@ -1,1 +1,5 @@
 .env
+*.tfstate*
+*.tfvars*
+*.hcl*
+terraform-provider-aws_*

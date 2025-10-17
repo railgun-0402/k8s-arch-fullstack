@@ -14,6 +14,8 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
       DB_HOST: ${DB_HOST}
+    entrypoint: ["/bin/sh", "/app/scripts/entrypoint.sh"]
+    command: ["npm", "run", "dev"]
     depends_on:
       db:
         condition: service_healthy
